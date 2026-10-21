@@ -1,6 +1,6 @@
 # Oden
 
-A Discord bot built with [discord.py](https://discordpy.readthedocs.io/) featuring an economy system, games, moderation tools, and music playback. All commands are slash commands — type `/` in Discord to see them.
+A Discord bot built with [discord.py](https://discordpy.readthedocs.io/) featuring an economy system, games, and moderation tools. All commands are slash commands — type `/` in Discord to see them.
 
 ## Commands
 
@@ -24,23 +24,19 @@ A Discord bot built with [discord.py](https://discordpy.readthedocs.io/) featuri
 - `/warn`, `/show_warns` — Issue and view member warnings
 - `/random_all`, `/random_online`, `/random_offline` — Pick a random member
 
-**Music**
-- `/join`, `/play`, `/skip`, `/pause`, `/resume`, `/stop`
-
 **Other**
 - `/help` — Lists all available commands
 
 ## Setup
 
-1. **Install Python 3.10+** and [FFmpeg](https://ffmpeg.org/download.html) (needed for music).
+1. **Install Python 3.10+**.
 2. **Install dependencies:**
    ```
    pip install -r requirements.txt
    ```
 3. **Create a bot** in the [Discord Developer Portal](https://discord.com/developers/applications). Under **Bot**, enable the *Server Members*, *Presence*, and *Message Content* intents.
 4. **Configure:** copy `.env.example` to `.env` and fill in your bot token and test server ID.
-5. **(Optional) YouTube cookies:** if YouTube blocks playback, export your YouTube cookies to `cookies.txt` in the project folder. Never commit this file.
-6. **Run:**
+5. **Run:**
    ```
    python main.py
    ```
@@ -54,5 +50,4 @@ cogs/
   fun.py         # Games and random fun commands
   help.py        # /help command
   moderation.py  # Moderation and warnings
-  music.py       # Voice channel music player
 ```
