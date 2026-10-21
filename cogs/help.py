@@ -59,7 +59,7 @@ class help(commands.Cog):
 
         # --- Build the Embed ---
         embed = discord.Embed(
-            title="🤖 Bot Command List",
+            title="🤖 Oden Command List",
             description="Use the `/` menu in Discord to see all command options and parameters.",
             color=HELP_EMBED_COLOR
         )

@@ -1,6 +1,15 @@
+# Secrets - never commit
 .env
+cookies.txt
+
+# Bot data (created at runtime)
 economy.json
+warns_data.json
+
+# Local launch scripts
+oden_start.bat
+oden_start.txt
+
+# Python / editor
 __pycache__/
 .vscode/
-demon_start.bat
-demon_start.txt

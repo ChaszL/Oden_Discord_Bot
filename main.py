@@ -20,7 +20,7 @@ bot = commands.Bot(command_prefix = "$", intents = default_intents)
 # Prints to console if bot is online
 @bot.event
 async def on_ready():
-    print(f"✅ Bot is logged in as {bot.user}")
+    print(f"✅ Oden is logged in as {bot.user}")
 
     # Loads all files in The "Cog" folder
     for filename in os.listdir("./cogs"):
