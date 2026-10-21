@@ -1,0 +1,6 @@
+.env
+economy.json
+__pycache__/
+.vscode/
+demon_start.bat
+demon_start.txt
