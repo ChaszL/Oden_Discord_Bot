@@ -1,7 +1,11 @@
 import discord
 from discord.ext import commands
 import os
+import sys
 from dotenv import load_dotenv
+
+# Lets the console print emoji on Windows
+sys.stdout.reconfigure(encoding = "utf-8")
 
 # Loads environment variables from .env file
 load_dotenv()
@@ -33,9 +37,10 @@ async def on_ready():
 
     print("starting command sync...")
     try:
-        guild = discord.Object(id = TEST_GUILD_ID)
+        guild = discord.Object(id = int(TEST_GUILD_ID))
         
         # Sync to the specific test guild for development speed
+        bot.tree.copy_global_to(guild = guild)
         await bot.tree.sync(guild = guild)
         # To register commands globally (in all guilds)
         await bot.tree.sync()

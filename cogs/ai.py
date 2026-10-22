@@ -3,6 +3,7 @@ from discord.ext import commands
 from discord import app_commands
 import aiohttp
 import os
+import re
 from typing import Dict, List
 
 # --- Configuration & Constants ---
@@ -15,10 +16,19 @@ MAX_HISTORY = 20
 DISCORD_LIMIT = 2000
 SYSTEM_PROMPT = (
     "You are Oden, a friendly and helpful Discord bot. "
-    "Keep answers concise and conversational, and use Discord markdown when it helps."
+    "Keep answers concise and conversational, and use Discord markdown when it helps. "
+    "Reply with only your final answer. /no_think"
 )
 
 # --- Helper Functions ---
+
+def strip_thinking(text: str) -> str:
+    """Removes qwen3-style <think>...</think> reasoning so only the final answer is left."""
+    text = re.sub(r"<think>.*?</think>", "", text, flags = re.DOTALL)
+    # some models leave out the opening tag, so drop everything before a stray closing tag
+    if "</think>" in text:
+        text = text.split("</think>", 1)[1]
+    return text.strip()
 
 def split_message(text: str, limit: int = DISCORD_LIMIT) -> List[str]:
     """Splits long text into chunks that fit in a Discord message, preferring newline breaks."""
@@ -69,7 +79,7 @@ class ai(commands.Cog):
             history.pop()
             return f"❌ Something went wrong talking to the AI: {e}"
 
-        reply = data["message"]["content"].strip() or "(no response)"
+        reply = strip_thinking(data["message"]["content"]) or "(no response)"
         history.append({"role": "assistant", "content": reply})
 
         # trims old messages so memory doesn't grow forever
